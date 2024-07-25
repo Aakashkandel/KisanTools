@@ -15,8 +15,8 @@ class CartController extends Controller
      */
     public function index()
     {
-       $user=auth()->user()->id;
-         $carts=Cart::where('user_id',$user)->get();
+        $carts=Cart::where('user_id',auth()->user()->id)->where('visible',1)->get();
+   
         return view('user.cart',compact('carts'));
     }
 
@@ -52,7 +52,7 @@ class CartController extends Controller
 
 
         ]);
-        $carts=Cart::all();
+        $carts=Cart::where('user_id',auth()->user()->id)->where('visible',1)->get();
         foreach($carts as $cart)
         {
            
@@ -105,7 +105,8 @@ class CartController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $cart=Cart::find($id);
+      
+        $cart=Cart::find($id);
     
 
         $data=$request->validate([

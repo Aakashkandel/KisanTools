@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -24,8 +26,8 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth','isadmin')->group(function () {
-   
+Route::middleware('auth', 'isadmin')->group(function () {
+
 
 
 
@@ -57,21 +59,30 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-//cart routes
+    //cart routes
+    Route::get('/productdetails/{id}', [PageController::class, 'productdetails'])->name('user.productdetails');
     Route::post('productdetails/store', [CartController::class, 'store'])->name('productdetails.store');
-    Route::get('/cart', [CartController::class, 'index'])->name('user.cart');
-    Route::get('/cart/destroy/{id}',[CartController::class,'destroy'])->name('user.cart.destroy');
-    Route::post('cart/update/{id}',[CartController::class,'update'])->name('user.cart.update');
-    
 
-    Route::get('/checkout',[PageController::class,'checkout'])->name('user.checkout');
+    Route::get('/cart', [CartController::class, 'index'])->name('user.cart');
+    Route::get('/cart/destroy/{id}', [CartController::class, 'destroy'])->name('user.cart.destroy');
+    Route::post('cart/update/{id}', [CartController::class, 'update'])->name('user.cart.update');
+
+
+    Route::get('/checkout', [PageController::class, 'checkout'])->name('user.checkout');
+
+    //order routes
+    Route::post('/order/store', [OrderController::class, 'store'])->name('order.store');
+
+    //payment routes    
+    Route::get('/payment/esewa/success', [PaymentController::class, 'esewasuccess'])->name('esewa.success');
+    Route::get('/payment/esewa/fail', [PaymentController::class, 'esewafail'])->name('esewa.fail');
 });
 
 
 //visitor routes and able to access by all
 Route::get('/', [PageController::class, 'index'])->name('user.index');
 Route::get('/shop', [PageController::class, 'shop'])->name('user.shop');
-Route::get('/productdetails/{id}', [PageController::class, 'productdetails'])->name('user.productdetails');
+
 
 
 

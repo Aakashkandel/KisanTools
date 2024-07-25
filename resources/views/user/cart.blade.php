@@ -69,7 +69,7 @@
                 </div>
                 <div class="flex justify-between mb-2">
                     <span class="text-gray-600">Shipping</span>
-                    <span class="text-gray-800">Rs 100</span>
+                    <span class="text-gray-800">Rs 0</span>
                 </div>
                 <div class="flex justify-between mb-4">
                     <span class="text-gray-600">Taxes</span>
@@ -77,7 +77,7 @@
                 </div>
                 <div class="border-t pt-4 flex justify-between font-bold">
                     <span class="text-gray-800">Total</span>
-                    <span class="text-gray-800">Rs <?php echo $total+100; ?></span>
+                    <span class="text-gray-800">Rs <?php echo $total; ?></span>
                 </div>
                <a href="{{route('user.checkout')}}"> <button class="w-full bg-green-600 text-white py-2 mt-6 rounded hover:bg-green-500">Proceed to Checkout</button></a>
                 <div class="text-center mt-4">
