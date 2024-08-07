@@ -19,7 +19,7 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $user_id = auth()->user()->id;
-        $cart_items = Cart::where('user_id', $user_id)->get();
+        $cart_items = Cart::where('user_id', $user_id)->where('visible', '1')->get();
         $cart_ids = $cart_items->pluck('id')->toArray();
         
 
@@ -40,6 +40,7 @@ class OrderController extends Controller
      
        
         $data['order_date'] = now();
+        
 
 
 
@@ -51,7 +52,6 @@ class OrderController extends Controller
             $cart_ids = json_decode($od->cart_ids);
             foreach ($cart_ids as $cart_id) {
                 $cart = Cart::find($cart_id);
-                $cart->status = 'paid';
                 $cart->visible = 0;
                 $cart->save();
                 $product = Product::find($cart->product_id);
@@ -127,9 +127,58 @@ class OrderController extends Controller
         $user=auth()->user()->id;
        
         $orders = Order::where('user_id', $user)->orderBy('id', 'desc')->get();
+        
         $items=$orders->pluck('cart_ids');
      
         return view('user.orderhistory', compact('orders'));
 
     }
+
+    public function orderproduct($id)
+
+    {
+        
+    $order = Order::find($id);
+
+    if (!$order) {
+        return redirect()->route('user.orderhistory')->with('error', 'Order not found');
+    }
+
+    
+    $cart_ids = json_decode($order->cart_ids);
+
+    
+    $cart_items = Cart::whereIn('id', $cart_ids)->get();
+
+
+
+   
+
+
+    return view('user.orderproduct', compact('cart_items'));
+        
+
+        
+    }
+
+    public function cancleorder($id){
+            
+            $order = Order::find($id);
+            $cart_ids = json_decode($order->cart_ids);
+            foreach ($cart_ids as $cart_id) {
+                $cart = Cart::find($cart_id);
+                $cart->visible = 0;
+                $productstock=$cart->product->stock + $cart->quantity;
+                $cart->product->stock=$productstock;
+                $cart->product->save();
+                $cart->delete();
+            }
+            $order->delete();
+            return redirect()->route('user.orderhistory')->with('success', 'Order cancelled successfully');
+            
+
+    }
+
+
+
 }

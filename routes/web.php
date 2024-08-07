@@ -63,6 +63,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/productdetails/{id}', [PageController::class, 'productdetails'])->name('user.productdetails');
     Route::post('productdetails/store', [CartController::class, 'store'])->name('productdetails.store');
 
+
     Route::get('/cart', [CartController::class, 'index'])->name('user.cart');
     Route::get('/cart/destroy/{id}', [CartController::class, 'destroy'])->name('user.cart.destroy');
     Route::post('cart/update/{id}', [CartController::class, 'update'])->name('user.cart.update');
@@ -80,7 +81,14 @@ Route::middleware('auth')->group(function () {
     //order history
     Route::get('/orderhistory',[OrderController::class,'history'])->name('user.orderhistory');
     Route::get('/ordercancel/{id}',[OrderController::class,'cancleorder'])->name('user.ordercancel');
+    Route::get('/orderproduct/{id}',[OrderController::class,'orderproduct'])->name('user.orderproduct');
+
+   
 });
+Route::get('/categorysearch/{id}', [PageController::class, 'categorysearch'])->name('user.categorysearch');
+Route::get('/search', [PageController::class, 'search'])->name('user.search');
+
+Route::get('/aboutus',[PageController::class,'aboutus'])->name('user.aboutus');
 
 
 //visitor routes and able to access by all

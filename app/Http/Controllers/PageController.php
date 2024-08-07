@@ -16,16 +16,21 @@ class PageController extends Controller
     //user after login
     public function index()
     {
-        return view('user.index');
+         //latest products 3
+            $latestproducts = Product::latest()->take(3)->get();
+            
+        return view('user.index',compact('latestproducts'));
+       
     }
 
 
     public function shop()
-    {
-        $products = Product::all();
-        $categories = Category::orderby('priority')->get();
-        return view('user.shop', compact('products', 'categories'));
-    }
+{
+    
+    $products = Product::paginate(8);
+    $categories = Category::orderBy('priority')->get();
+    return view('user.shop', compact('products', 'categories'));
+}
 
     public function productdetails($id)
     {
@@ -39,7 +44,7 @@ class PageController extends Controller
 
         $user = auth()->user()->id;
 
-        //cart details where visible is 1
+       
         $carts = Cart::where('user_id', $user)->where('visible', 1)->get();
         if($carts->count() == 0){
             return redirect()->route('user.cart')->with('error', 'No items in cart');
@@ -59,6 +64,27 @@ class PageController extends Controller
         return view('user.checkout', compact('total', 'items'));
     }
 
+    public function categorysearch($id)
+    {
+        $products = Product::where('category_id', $id)->paginate(8);
+        $categories = Category::orderBy('priority')->get();
+        return view('user.shop', compact('products', 'categories'));
+
+    }
+
+public function search(Request $request)
+{
+    $search = $request->search;
+    $products = Product::where('name', 'like', '%' . $search . '%')->paginate(8);
+    $categories = Category::orderBy('priority')->get();
+    return view('user.shop', compact('products', 'categories'));
+}
+
+
+public function aboutus()
+{
+    return view('user.aboutus');
+}
 
 
 

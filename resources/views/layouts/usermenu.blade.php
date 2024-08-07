@@ -56,15 +56,17 @@
         }, 2000);
     </script>
     @endif
-    <header class="bg-blue-900  p-4">
+    <header class="bg-blue-900  p-4 fixed w-full">
         <div class="container mx-auto flex justify-between items-center">
             <div class="text-2xl font-bold text-gray-200">Kisan<span class="text-yellow-500">Tools</span></div>
             <nav class="space-x-4 menuitem">
                 <a href="{{route('user.index')}}" class="text-gray-200 ">Home</a>
                 <a href="{{route('user.shop')}}" class="text-gray-200 ">Shop</a>
+                @auth
                 <a href="{{route('user.orderhistory')}}" class="text-gray-200 ">Order History</a>
-                <a href="{{route('user.cart')}}" class="text-gray-200 ">Cart</a>
-                <a href="#" class="text-gray-200 ">Contact</a>
+
+                @endauth
+                <a href="{{route('user.aboutus')}}" class="text-gray-200 ">Aboutus</a>
             </nav>
             <div class="flex items-center space-x-4 ">
 
@@ -79,7 +81,7 @@
                    
                 </div>
 
-                <a class="text-gray-200 font-semibold bg-green-800 px-5 py-2 rounded-xl mx-2 hover:bg-green-700" href=""><i class="ri-shopping-cart-2-line"></i>cart</a>
+                <a class="text-gray-200 font-semibold bg-green-800 px-5 py-2 rounded-xl mx-2 hover:bg-green-700" href="{{route('user.cart')}}" ><i class="ri-shopping-cart-2-line"></i>cart</a>
                 <form action="{{route('logout')}}" method="post" class="inline">
                     @csrf
                     <button class="text-gray-900 font-semibold bg-gray-200 px-5 py-2 rounded-xl mx-2 hover:bg-gray-300" type="submit"><i class="ri-logout-box-r-line ">logout</i></button>
@@ -92,9 +94,20 @@
             </div>
         </div>
     </header>
-    <div>
+    <div class="">
         @yield('content')
     </div>
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 text-yellow-800 py-6">
+        <div class="container mx-auto text-center text-gray-200">
+            <p>&copy; 2024 AgriTools. All rights reserved.</p>
+            <div class="mt-4">
+                <a href="#" class="text-gray-200 hover:text-gray-100">Privacy Policy</a>
+                <span class="mx-2">|</span>
+                <a href="#" class="text-gray-200 hover:text-gray-100">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
 
 </body>
 

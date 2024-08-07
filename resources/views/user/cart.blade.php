@@ -20,6 +20,8 @@
                 <?php      $total=0; ?>
 
                 @foreach($carts as $cart)
+
+               
            
                 <div class="flex items-center justify-between mb-4 border-b pb-4 bg-gray-100 p-5 rounded-xl">
                     <div class="flex items-center">
@@ -58,6 +60,10 @@
                 
                 @endphp
                 @endforeach
+
+                @if(count($carts)==0)
+                <h2 class="text-2xl font-bold mb-4 text-center text-gray-700">No Items in your cart</h2>
+                @endif
             </div>
 
             <!-- Summary Section -->
