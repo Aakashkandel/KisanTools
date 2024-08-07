@@ -62,6 +62,7 @@
             <nav class="space-x-4 menuitem">
                 <a href="{{route('user.index')}}" class="text-gray-200 ">Home</a>
                 <a href="{{route('user.shop')}}" class="text-gray-200 ">Shop</a>
+                <a href="{{route('user.orderhistory')}}" class="text-gray-200 ">Order History</a>
                 <a href="{{route('user.cart')}}" class="text-gray-200 ">Cart</a>
                 <a href="#" class="text-gray-200 ">Contact</a>
             </nav>

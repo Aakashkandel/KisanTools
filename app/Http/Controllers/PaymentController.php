@@ -83,7 +83,7 @@ class PaymentController extends Controller
         ];
 
         Payment::create($paymentdata);
-        return redirect()->route('user.checkout')->with('success', 'Payment successful');
+        return redirect()->route('user.orderhistory')->with('success', 'Payment successful');
     }
 
     public function esewafail(Request $request)

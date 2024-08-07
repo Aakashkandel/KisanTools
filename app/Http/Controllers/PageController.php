@@ -52,6 +52,8 @@ class PageController extends Controller
         foreach ($carts as $cart) {
             $items++;
             $total += $cart->product->price * $cart->quantity;
+           
+            $total = number_format((float)$total, 2, '.', '');
         }
 
         return view('user.checkout', compact('total', 'items'));

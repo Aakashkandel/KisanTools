@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     protected $fillable = [
-        'user_id', 'cart_ids', 'status', 'payment_method', 'payment_status', 'order_date'
+        'user_id', 'cart_ids', 'status', 'payment_method', 'payment_status', 'order_date','total_amount'
     ];
 
     protected $casts = [

@@ -76,12 +76,17 @@ Route::middleware('auth')->group(function () {
     //payment routes    
     Route::get('/payment/esewa/success', [PaymentController::class, 'esewasuccess'])->name('esewa.success');
     Route::get('/payment/esewa/fail', [PaymentController::class, 'esewafail'])->name('esewa.fail');
+
+    //order history
+    Route::get('/orderhistory',[OrderController::class,'history'])->name('user.orderhistory');
+    Route::get('/ordercancel/{id}',[OrderController::class,'cancleorder'])->name('user.ordercancel');
 });
 
 
 //visitor routes and able to access by all
 Route::get('/', [PageController::class, 'index'])->name('user.index');
 Route::get('/shop', [PageController::class, 'shop'])->name('user.shop');
+
 
 
 

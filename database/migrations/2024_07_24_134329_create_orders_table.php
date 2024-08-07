@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->json('cart_ids');
             $table->string('status')->default('pending');
+            $table->decimal('total_amount', 8, 2)->default(0);
             $table->string('payment_method');
             $table->string('payment_status')->default('pending'); 
             $table->date('order_date')->default(now()) ;

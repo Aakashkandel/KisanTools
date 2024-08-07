@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Ramsey\Uuid\Type\Decimal;
 
 class OrderController extends Controller
 {
@@ -20,18 +21,28 @@ class OrderController extends Controller
         $user_id = auth()->user()->id;
         $cart_items = Cart::where('user_id', $user_id)->get();
         $cart_ids = $cart_items->pluck('id')->toArray();
+        
 
         // Validate the request data
         $data = $request->validate([
             'payment_method' => 'required',
-            'price' => 'required',
+            'total_amount' => 'required',
         ]);
+
+      
 
         $data['user_id'] = $user_id;
         $data['cart_ids'] = json_encode($cart_ids);
         $data['status'] = 'pending';
         $data['payment_status'] = 'pending';
+        $data['payment_method'] = $request->payment_method;
+        $data['total_amount'] = $request->total_amount;
+     
+       
         $data['order_date'] = now();
+
+
+
 
         if ($data['payment_method'] == 'cod') {
             $data['status'] = 'completed';
@@ -51,7 +62,7 @@ class OrderController extends Controller
                 $product->stock = $stock;
                 $product->save();
             }
-            return redirect()->route('user.cart')->with('success', 'Order placed successfully');
+            return redirect()->route('user.orderhistory')->with('success', 'Order placed successfully');
 
         } else {
             $order = Order::create($data);
@@ -109,5 +120,16 @@ class OrderController extends Controller
         return response()->json(['message' => 'Order placed successfully'], 200);
     }
 
-    // Other methods (index, create, show, edit, update, destroy)
+   
+
+    public function history()
+    {
+        $user=auth()->user()->id;
+       
+        $orders = Order::where('user_id', $user)->orderBy('id', 'desc')->get();
+        $items=$orders->pluck('cart_ids');
+     
+        return view('user.orderhistory', compact('orders'));
+
+    }
 }

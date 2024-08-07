@@ -63,6 +63,7 @@
                     <span class="text-red-500">{{ $message }}</span>
                 @enderror
             </div>
+            <input type="hidden" name="total_amount" value="{{ $total }}">
 
             <button type="submit" class="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition duration-200">Place Order</button>
         </form>
@@ -78,7 +79,7 @@
                 <div class="flex justify-between">
                     <span>Subtotal:</span>
                     <span>Rs {{ $total }}</span>
-                    <input type="hidden" name="price" value="{{ $total }}">
+                   
                 </div>
                 <div class="flex justify-between">
                     <span>Tax:</span>
