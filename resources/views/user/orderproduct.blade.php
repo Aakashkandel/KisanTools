@@ -1,7 +1,7 @@
 @extends('layouts.usermenu')
 
 @section('content')
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 p-4">
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 p-4 pt-20">
     @foreach($cart_items as $cart)
     <div class="bg-white shadow-md rounded-lg overflow-hidden transition-transform transform hover:scale-105">
         <img src="{{ asset('images/product/' . $cart->product->image) }}" class="w-full h-48 object-cover" alt="{{ $cart->product->name }}">

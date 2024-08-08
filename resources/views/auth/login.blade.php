@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kisan Tools - Admin Login</title>
+    <title>Kisan Tools -  Login</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         .login-photo {
@@ -12,7 +12,7 @@
     </style>
 </head>
 <body class="bg-gray-100 text-gray-900 flex justify-center items-center min-h-screen">
-    <div class="w-full max-w-6xl mx-4 sm:mx-auto bg-white shadow-lg sm:rounded-lg flex overflow-hidden">
+    <div class="w-full max-w-6xl mx-4 sm:mx-auto bg-white shadow-lg sm:rounded-lg flex overflow-hidden  my-10">
         <!-- Image Section -->
         <div class="flex-1 bg-indigo-100 hidden lg:flex">
             <div class="w-full bg-cover bg-center login-photo">
@@ -24,11 +24,11 @@
         <div class="lg:w-1/2 xl:w-7/12 p-6 sm:p-12">
             <div class="flex justify-center">
                 <div class="w-full max-w-md">
-                    <div class="text-green-900 font-semibold text-3xl font-bold text-center">
+                    <div class="text-green-900 font-semibold text-3xl  text-center">
                         Kisan<span class="text-indigo-400">Tools</span>
                     </div>
                     <div class="flex flex-col mt-4">
-                        <h1 class="text-2xl xl:text-3xl font-extrabold text-center">Admin Login</h1>
+                        <h1 class="text-2xl xl:text-3xl font-extrabold text-center">Login</h1>
                         <div class="mt-8">
                             <div class="my-12 border-b text-center">
                                 <h2 class="font-semibold text-gray-700">Please login to access features</h2>
@@ -79,7 +79,7 @@
                                     <!-- Forgot Password -->
                                     <div class="flex items-center justify-end mt-4">
                                         
-                                        <button type="submit" class="ml-3 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
+                                        <button type="submit" class="ml-3 tracking-wide font-semibold bg-green-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
                                             <svg
                                                 class="w-6 h-6 -ml-2"
                                                 fill="none"
@@ -110,6 +110,13 @@
                                         and its
                                         <a href="#" class="border-b border-gray-500 border-dotted">Privacy Policy</a>
                                     </p>
+                                </div>
+                                
+                                <div class="flex items
+                                -center justify-end mt-4">
+                                    <a href="{{ route('user.index') }}" class="ml-4 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
+                                        Back Home
+                                    </a>
                                 </div>
                             </form>
                         </div>

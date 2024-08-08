@@ -7,7 +7,7 @@
         
 
   
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4 mt-16">
           
 
             @foreach($orders as $order)
@@ -20,15 +20,19 @@
                 </div>
                 <div class="p-4 bg-gray-50">
                    @if($order->payment_status == 'pending')
-                   <h3 class="text-lg font-semibold bg-red-600 text-center  text-gray-200 rounded p-1"> {{$order->payment_status}}</h3>
-                     @else
+                   <h3 class="text-lg font-semibold bg-yellow-600 text-center  text-gray-200 rounded p-1"> {{$order->payment_status}}</h3>
+                     @elseif($order->payment_status == 'paid')
                         <h3 class="text-lg font-semibold bg-green-600 text-center  text-gray-200 rounded p-1"> {{$order->payment_status}}</h3>
+                    @else
+                    <h3 class="text-lg font-semibold bg-red-600 text-center  text-gray-200 rounded p-1"> {{$order->payment_status}}</h3>
                     @endif
                     <p class="text-gray-600 mt-2 font-semibold">Total Amount: {{$order->total_amount}}</p>
                     <div class="flex mt-4">
                         <a href="{{route('user.orderproduct',$order->id)}}" class="w-full bg-blue-600 text-white py-2 px-4 rounded-full text-center">View Product</a>
                        @if($order->payment_status == 'pending')
                        <a href="{{route('user.ordercancel',$order->id)}}" class="w-full bg-gray-500 text-white py-2 px-4 rounded-full text-center ml-2">Cancel Order</a>
+                        @elseif($order->payment_status == 'rejected')
+                        <a href="{{route('user.deleteorder',$order->id)}}" class="w-full bg-gray-500 text-white py-2 px-4 rounded-full text-center ml-2">Delete Order</a>
                         @endif
 
                     </div>

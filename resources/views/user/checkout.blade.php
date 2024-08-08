@@ -14,7 +14,7 @@
                 <div>
                    
                     <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                    <input type="text" id="name" name="name" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" >
+                    <input type="text" value="{{auth()->user()->name}}" id="name" name="name" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" >
                    
                     @error('name')
                         <span class="text-red-500">{{ $message }}</span>
@@ -22,7 +22,7 @@
                 </div>
                 <div>
                     <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                    <input type="email" id="email" name="email" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" >
+                    <input type="email" value={{auth()->user()->email}} id="email" name="email" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" >
                     @error('email')
                         <span class="text-red-500">{{ $message }}</span>
                     @enderror

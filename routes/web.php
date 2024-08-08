@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrderController;
@@ -26,7 +27,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth', 'isadmin')->group(function () {
+Route::middleware(['auth', 'isadmin', 'verified'])->group(function () {
 
 
 
@@ -51,10 +52,21 @@ Route::middleware('auth', 'isadmin')->group(function () {
     Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('admin.product.edit');
     Route::post('/product/update/{id}', [ProductController::class, 'update'])->name('admin.product.update');
     Route::get('/product/delete/{id}', [ProductController::class, 'destroy'])->name('admin.product.delete');
+
+    //order crud
+    Route::get('/order', [AdminController::class, 'index'])->name('admin.order');
+    Route::get('/order/accept/{id}', [AdminController::class, 'acceptorder'])->name('admin.order.accept');
+    Route::get('/order/reject/{id}', [AdminController::class, 'rejectorder'])->name('admin.order.reject');
+
+    //payment crud
+    Route::get('/payment', [AdminController::class, 'payment'])->name('admin.payment');
+
+    //user
+    Route::get('/user', [AdminController::class, 'user'])->name('admin.user');
 });
 
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'isuser', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -82,6 +94,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/orderhistory',[OrderController::class,'history'])->name('user.orderhistory');
     Route::get('/ordercancel/{id}',[OrderController::class,'cancleorder'])->name('user.ordercancel');
     Route::get('/orderproduct/{id}',[OrderController::class,'orderproduct'])->name('user.orderproduct');
+    Route::get('/deleteorder/{id}',[OrderController::class,'deleteorder'])->name('user.deleteorder');
 
    
 });
@@ -89,6 +102,7 @@ Route::get('/categorysearch/{id}', [PageController::class, 'categorysearch'])->n
 Route::get('/search', [PageController::class, 'search'])->name('user.search');
 
 Route::get('/aboutus',[PageController::class,'aboutus'])->name('user.aboutus');
+
 
 
 //visitor routes and able to access by all

@@ -14,4 +14,9 @@ class Order extends Model
     protected $casts = [
         'cart_ids' => 'array', // Automatically cast JSON to array
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Category;
+use App\Models\Order;
+use App\Models\Payment;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -95,6 +98,12 @@ public function aboutus()
 
     public function dashboard()
     {
-        return view('admin.index');
+        $users = User::count();
+        $products = Product::count();
+        $categories = Category::count();
+   
+        $orders = Order::orderBy('id', 'desc')->take(10)->get();
+        $payments = Payment::count();
+        return view('admin.index' , compact('users', 'products', 'categories', 'orders', 'payments'));
     }
 }

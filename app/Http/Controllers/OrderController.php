@@ -179,6 +179,20 @@ class OrderController extends Controller
 
     }
 
+    public function deleteorder($id)
+    {
+
+        $order = Order::find($id);
+        $cart_ids = json_decode($order->cart_ids);
+        foreach ($cart_ids as $cart_id) {
+            $cart = Cart::find($cart_id);
+            $cart->delete();
+        }
+        $order->delete();
+        return redirect()->route('user.orderhistory')->with('success', 'Order cancelled successfully');
+
+    }
+
 
 
 }

@@ -12,7 +12,7 @@
     </style>
 </head>
 <body class="bg-gray-100 text-gray-900 flex justify-center items-center min-h-screen">
-    <div class="w-full max-w-6xl mx-4 sm:mx-auto bg-white shadow-lg sm:rounded-lg flex overflow-hidden">
+    <div class="w-full max-w-6xl mx-4 sm:mx-auto bg-white shadow-lg sm:rounded-lg flex overflow-hidden my-10">
         <!-- Image Section -->
         <div class="flex-1 bg-indigo-100 hidden lg:flex">
             <div class="w-full bg-cover bg-center register-photo">
@@ -65,6 +65,12 @@
 
                                 </div>
                                 <a href="{{ route('login') }}" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">Already registered?</a>
+                                <div class="flex items
+                                -center justify-end mt-4">
+                                    <a href="{{ route('user.index') }}" class="ml-4 tracking-wide font-semibold bg-gray-200 text-gray-700 w-full py-4 rounded-lg hover:bg-gray-300 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
+                                        Back Home
+                                    </a>
+                                </div>
 
                             </form>
                         </div>

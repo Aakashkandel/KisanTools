@@ -14,6 +14,8 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <link rel="stylesheet" href="boxicons.min.css">
 </head>
 
 
@@ -68,14 +70,21 @@
                             <span class="text-sm font-medium">Product</span>
                         </a>
                     </li>
+
                     <li class="hover:bg-blue-900">
-                        <a href="#" class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-200 hover:text-gray-100">
+                        <a href="{{route('admin.order')}}" class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-200 hover:text-gray-100">
+                            <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-200"><i class="bx bx-shopping-bag"></i></span>
+                            <span class="text-sm font-medium">Order</span>
+                        </a>
+                    </li>
+                    <li class="hover:bg-blue-900">
+                        <a href="{{route('admin.payment')}}" class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-200 hover:text-gray-100">
                             <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-200"><i class="bx bx-shopping-bag"></i></span>
                             <span class="text-sm font-medium">Payment</span>
                         </a>
                     </li>
                     <li class="hover:bg-blue-900">
-                        <a href="#" class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-200 hover:text-gray-100">
+                        <a href="{{route('admin.user')}}" class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-200 hover:text-gray-100">
                             <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-200"><i class="bx bx-chat"></i></span>
                             <span class="text-sm font-medium">Users</span>
                         </a>
